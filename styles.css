@@ -1,0 +1,228 @@
+/* ============================================================
+   Escape the Haunted Mansion — shared stylesheet (simple version)
+   Drop this file next to your 9 pages as "styles.css" — every
+   page already has <link rel="stylesheet" href="styles.css">,
+   so nothing else needs to change to turn this on.
+
+   Kept deliberately plain: flat colors, no gradients, no glow
+   effects, one font. Matches the classes/tags you already used
+   rather than asking you to rename anything.
+   ============================================================ */
+
+:root{
+  --bg: #1b1526;
+  --card: #2b2338;
+  --border: #5e4f78;
+  --gold: #e8b54f;
+  --text: #f5efe4;
+  --text-dim: #b8ac9c;
+}
+
+*{ box-sizing:border-box; }
+
+html, body{
+  margin:0;
+  padding:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Georgia, serif;
+}
+
+/* ---- shared page frame ----
+   lives on <body> so pages like player-list.html, which has a
+   couple of elements sitting outside the .main div, still land
+   inside the same centered column */
+body{
+  min-height:100vh;
+  max-width:420px;
+  margin:0 auto;
+  padding:32px 20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:14px;
+}
+main, .main, .container{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+}
+
+h1, h2, h3{ margin:0; }
+
+h1{
+  font-size:24px;
+  color:var(--gold);
+}
+
+/* small label — Trap Triggered / Power-Up Found /
+   Gather Your Party / Your Power-Ups all use h2 this way */
+h2{
+  font-size:13px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--gold);
+}
+
+p{
+  font-size:14px;
+  line-height:1.5;
+  color:var(--text-dim);
+  margin:0;
+}
+p.Italic{ font-style:italic; }
+
+/* every <img> gets a simple round frame, so empty src="" still
+   looks intentional instead of a broken-image icon */
+img{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background:var(--card);
+  border:1px solid var(--gold);
+  object-fit:cover;
+}
+
+button, Button{
+  width:100%;
+  max-width:280px;
+  height:48px;
+  border-radius:6px;
+  border:1px solid var(--gold);
+  font-family:Georgia, serif;
+  font-size:14px;
+  cursor:pointer;
+  background:var(--gold);
+  color:#1a1420;
+}
+/* second action on a two-button page reads as the quieter choice —
+   index.html's "How to play", and Escaped.html's "View the Board" */
+main > button:nth-of-type(2),
+.button > button:first-of-type{
+  background:none;
+  color:var(--gold);
+}
+
+/* ---- Pass the device / Trap / Power-Up "card" pages ---- */
+.box{
+  width:100%;
+  max-width:280px;
+  padding:32px 20px;
+  border:1px solid var(--border);
+  border-radius:6px;
+  background:var(--card);
+}
+
+/* ---- how to play: trap & power-up lists ---- */
+.traps, .powerups{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  text-align:left;
+  margin-top:4px;
+}
+.traps > div:not(.powerups), .powerups > div{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:8px 0;
+  border-bottom:1px solid var(--border);
+}
+.traps img, .powerups img{ width:36px; height:36px; flex-shrink:0; }
+.list p:first-child{
+  font-weight:bold;
+  color:var(--text);
+}
+.list p:last-child{ font-size:12px; }
+
+/* ---- player list (Gather Your Party) ---- */
+.entername, .addplayer, .removeplayer{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px 14px;
+  border-radius:6px;
+  border:1px solid var(--border);
+}
+.entername img, .addplayer img, .removeplayer img{ width:30px; height:30px; }
+.entername input{
+  flex:1;
+  background:none;
+  border:none;
+  outline:none;
+  color:var(--text);
+  font-family:Georgia, serif;
+  font-size:15px;
+}
+.addplayer, .removeplayer{ border-style:dashed; color:var(--text-dim); cursor:pointer; }
+.addplayer p, .removeplayer p{ margin:0; color:inherit; }
+.removeplayer:disabled, .removeplayer[aria-disabled="true"]{ opacity:.35; cursor:default; }
+
+/* ---- power-up list (pack) ---- */
+.imgs{
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.imgs img{ width:40px; height:40px; }
+[class^="power-up"]{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px 12px;
+  border-radius:6px;
+  border:1px solid var(--border);
+  text-align:left;
+}
+[class^="power-up"] img{ width:32px; height:32px; flex-shrink:0; }
+[class^="power-up"] h3{ font-size:13px; color:var(--text); }
+[class^="power-up"] p{ flex:1; font-size:12px; }
+[class^="power-up"] button{
+  width:auto;
+  height:32px;
+  padding:0 12px;
+  font-size:12px;
+  max-width:none;
+}
+
+/* ---- escaped (winner) ---- */
+.info{ display:flex; flex-direction:column; align-items:center; gap:6px; }
+.Turns, .left-inside{
+  display:inline-block;
+  min-width:110px;
+  padding:10px 0;
+  margin:4px 6px;
+  border-radius:6px;
+  border:1px solid var(--border);
+}
+.continue{
+  margin-top:auto;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+.continue .button{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+/* "back to home" is an h2 here, but it's meant to read as a quiet
+   text link rather than a section label */
+.continue > h2{
+  text-transform:none;
+  letter-spacing:0;
+  font-style:italic;
+  font-size:13px;
+  color:var(--text-dim);
+  cursor:pointer;
+}

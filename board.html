@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="board.css">
+</head>
+<body>
+    <div class="main">
+        <div class="hud">
+            <div class="hud-pill hud-name"><span id="turn-name">Player</span>'s Turn</div>
+            <div class="hud-pill">Turn <span id="turn-number">1</span></div>
+        </div>
+        <p class="flavor" id="flavor">Roll the die, then pick a direction.</p>
+
+        <div class="dpad-row">
+            <button class="dpad-btn" id="btn-up" disabled>▲</button>
+        </div>
+        <div class="dpad-row dpad-row-mid">
+            <button class="dpad-btn" id="btn-left" disabled>◀</button>
+            <button class="dice-btn" id="dice-btn">?</button>
+            <button class="dpad-btn" id="btn-right" disabled>▶</button>
+        </div>
+        <div class="dpad-row">
+            <button class="dpad-btn" id="btn-down" disabled>▼</button>
+        </div>
+
+        <div class="board-grid" id="board-grid"></div>
+
+        <button class="pack-btn" id="btn-pack">View Pack</button>
+    </div>
+
+    <script src="board.js"></script>
+</body>
+</html>
